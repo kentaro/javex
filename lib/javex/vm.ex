@@ -1,5 +1,5 @@
 defmodule Javex.VM do
-  def run(instructions) do
-    instructions
+  def run(class_file) do
+    {[], class_file}
   end
 end

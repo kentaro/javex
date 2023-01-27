@@ -19,7 +19,7 @@ defmodule Javex.ClassFile.Attribute.Code do
           max_stack::size(16),
           max_locals::size(16),
           code_length::size(32),
-          code::size(code_length * 8),
+          code::binary-size(code_length),
           exception_table_length::size(16),
           exception_table::size(exception_table_length * 8),
           attributes_count::size(16),

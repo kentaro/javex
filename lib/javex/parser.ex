@@ -1,5 +1,6 @@
 defmodule Javex.Parser do
   alias Javex.ClassFile
+
   alias Javex.ClassFile.{
     Attribute,
     ConstantPool,
@@ -8,14 +9,17 @@ defmodule Javex.Parser do
   }
 
   def parse(binary) when is_binary(binary) do
-    {%ClassFile{}, binary}
-    |> parse_header()
-    |> parse_constant_pool()
-    |> parse_class()
-    |> parse_interfaces()
-    |> parse_fields()
-    |> parse_methods()
-    |> parse_attributes()
+    {class_file, _} =
+      {%ClassFile{}, binary}
+      |> parse_header()
+      |> parse_constant_pool()
+      |> parse_class()
+      |> parse_interfaces()
+      |> parse_fields()
+      |> parse_methods()
+      |> parse_attributes()
+
+    class_file
   end
 
   def parse_header({
