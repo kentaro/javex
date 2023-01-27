@@ -1,4 +1,4 @@
-defmodule Javex.Struct.ConstantPool.Utf8 do
+defmodule Javex.ClassFile.ConstantPool.Utf8 do
   defstruct [:length, :bytes]
 
   def read_from(<<

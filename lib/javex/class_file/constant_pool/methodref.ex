@@ -1,4 +1,4 @@
-defmodule Javex.Struct.ConstantPool.Fieldref do
+defmodule Javex.ClassFile.ConstantPool.Methodref do
   defstruct [:class_index, :name_and_type_index]
 
   def read_from(<<

@@ -1,7 +1,7 @@
 defmodule Javex.Parser do
-  alias Javex.Struct.{
+  alias Javex.ClassFile
+  alias Javex.ClassFile.{
     Attribute,
-    ClassFile,
     ConstantPool,
     Field,
     Method

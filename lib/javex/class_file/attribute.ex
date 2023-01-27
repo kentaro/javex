@@ -1,4 +1,4 @@
-defmodule Javex.Struct.Attribute do
+defmodule Javex.ClassFile.Attribute do
   defstruct [
     :attribute_name_index,
     :attribute_length,

@@ -1,4 +1,4 @@
-defmodule Javex.Struct.Field do
+defmodule Javex.ClassFile.Field do
   defstruct [
     :access_flags,
     :name_index,
@@ -7,7 +7,7 @@ defmodule Javex.Struct.Field do
     :attributes
   ]
 
-  alias Javex.Struct.Attribute
+  alias Javex.ClassFile.Attribute
 
   def read_from(<<
         access_flags::size(16),

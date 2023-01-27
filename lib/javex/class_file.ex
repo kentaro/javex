@@ -1,4 +1,4 @@
-defmodule Javex.Struct.ClassFile do
+defmodule Javex.ClassFile do
   # https://docs.oracle.com/javase/specs/jvms/se19/html/jvms-4.html#jvms-4.1
   defstruct [
     :magic,

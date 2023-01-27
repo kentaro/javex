@@ -1,5 +1,5 @@
-defmodule Javex.Struct.ConstantPool do
-  alias Javex.Struct.ConstantPool.{
+defmodule Javex.ClassFile.ConstantPool do
+  alias Javex.ClassFile.ConstantPool.{
     Utf8,
     Integer,
     Float,
