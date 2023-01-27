@@ -1,24 +1,28 @@
 defmodule Javex.ClassFile.Attribute do
-  defstruct [
-    :attribute_name_index,
-    :attribute_length,
-    :info
-  ]
+  alias Javex.ClassFile.Attribute.{
+    Code,
+    LineNumberTable,
+    SourceFile
+  }
 
-  def read_from(<<
-        attribute_name_index::size(16),
-        attribute_length::size(32),
-        info::size(attribute_length * 8),
-        binary::binary
-      >>) do
+  @constants %{
+    "Code" => Code,
+    "LineNumberTable" => LineNumberTable,
+    "SourceFile" => SourceFile
+  }
 
-    {
-      %__MODULE__{
-        attribute_name_index: attribute_name_index,
-        attribute_length: attribute_length,
-        info: info
-      },
-      binary
-    }
+  def read_from(
+        <<
+          attribute_name_index::size(16),
+          binary::binary
+        >>,
+        class_file
+      ) do
+    attribute_name =
+      class_file.constant_pool
+      |> Enum.at(attribute_name_index - 1)
+      |> Map.get(:bytes)
+
+    Map.get(@constants, attribute_name).read_from(binary, class_file)
   end
 end

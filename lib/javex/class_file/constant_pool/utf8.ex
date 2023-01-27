@@ -3,7 +3,7 @@ defmodule Javex.ClassFile.ConstantPool.Utf8 do
 
   def read_from(<<
         length::size(16),
-        bytes::size(length * 8),
+        bytes::bitstring-size(length * 8),
         binary::binary
       >>) do
     {

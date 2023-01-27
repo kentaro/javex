@@ -126,7 +126,7 @@ defmodule Javex.Parser do
         1..fields_count
         |> Enum.reduce({[], binary}, fn _, acc ->
           {fields, binary} = acc
-          {field, binary} = Field.read_from(binary)
+          {field, binary} = Field.read_from(binary, class_file)
           {[field | fields], binary}
         end)
       end
@@ -154,7 +154,7 @@ defmodule Javex.Parser do
         1..methods_count
         |> Enum.reduce({[], binary}, fn _, acc ->
           {methods, binary} = acc
-          {method, binary} = Method.read_from(binary)
+          {method, binary} = Method.read_from(binary, class_file)
           {[method | methods], binary}
         end)
       end
@@ -182,7 +182,7 @@ defmodule Javex.Parser do
         1..attributes_count
         |> Enum.reduce({[], binary}, fn _, acc ->
           {attributes, binary} = acc
-          {attribute, binary} = Attribute.read_from(binary)
+          {attribute, binary} = Attribute.read_from(binary, class_file)
           {[attribute | attributes], binary}
         end)
       end

@@ -9,13 +9,16 @@ defmodule Javex.ClassFile.Field do
 
   alias Javex.ClassFile.Attribute
 
-  def read_from(<<
-        access_flags::size(16),
-        name_index::size(16),
-        descriptor_index::size(16),
-        attributes_count::size(16),
-        binary::binary
-      >>) do
+  def read_from(
+        <<
+          access_flags::size(16),
+          name_index::size(16),
+          descriptor_index::size(16),
+          attributes_count::size(16),
+          binary::binary
+        >>,
+        class_file
+      ) do
     {attributes, binary} =
       if attributes_count == 0 do
         {[], binary}
@@ -23,7 +26,7 @@ defmodule Javex.ClassFile.Field do
         1..attributes_count
         |> Enum.reduce({[], binary}, fn _, acc ->
           {attributes, binary} = acc
-          {attribute, binary} = Attribute.read_from(binary)
+          {attribute, binary} = Attribute.read_from(binary, class_file)
           {[attribute | attributes], binary}
         end)
       end
