@@ -12,6 +12,12 @@ defmodule Javex do
       :world
 
   """
+  def run(file_name) when is_binary(file_name) do
+    file_name
+    |> File.read()
+    |> run()
+  end
+
   def run({:ok, binary}) do
     binary
     |> Javex.Parser.parse()
@@ -20,11 +26,5 @@ defmodule Javex do
 
   def run({:error, reason}) do
     raise("Error: #{reason}")
-  end
-
-  def run(file_name) do
-    file_name
-    |> File.read()
-    |> run()
   end
 end
